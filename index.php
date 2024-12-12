@@ -22,6 +22,7 @@ function sayHello($name) {
 			
 		phpinfo(); 
 			
+		
 		?>
 	</body>
 </html>
