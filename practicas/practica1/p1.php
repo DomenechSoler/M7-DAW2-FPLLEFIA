@@ -33,13 +33,13 @@ class Persona {
     private $edat;
 
     // Constructor que inicializa los atributos
-    public function __construct($nom, $edat) {
+    public function __construct(string $nom, int $edat) {
         $this->nom = $nom;
         $this->edat = $edat;
     }
 
     // metodo para mostrar un mensaje de bienvenida
-    public function benvinguda() {
+    public function benvinguda(): string {
         return "Benvingut/a, " . $this->nom . "! Tens " . $this->edat . " anys.";
     }
 }

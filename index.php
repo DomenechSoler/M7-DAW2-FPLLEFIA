@@ -20,7 +20,7 @@ function sayHello($name) {
 		
 		sayHello('remote hgjuihbui');
 			
-		phpinfo(); 
+
 			
 		
 		?>
