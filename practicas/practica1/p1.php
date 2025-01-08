@@ -76,6 +76,53 @@ $calculadora = new Calculadora(10, 5);
 
 echo "El resultat de la suma és: " . $calculadora->sumar();
 
+class Animal {
+    public string $nom;
+    public string $tipus;
+
+    public function __construct(string $nom = "sense nom", string $tipus = "sense tipus") {
+        $this->nom = $nom;
+        $this->tipus = $tipus;
+    }
+
+    public function saludar(): string {
+        return "Hola, sóc un " . $this->tipus . " i em dic " . $this->nom . ".";
+    }
+}
+
+
+$animal1 = new Animal("Luna", "gos");
+$animal2 = new Animal("Michi", "gat");
+
+echo $animal1->saludar(); 
+
+echo $animal2->saludar(); 
+
+
+
+class Producte {
+    public string $nom;
+    public float $preu;
+
+    public function __construct(string $nom, float $preu) {
+        $this->nom = $nom;
+        $this->preu = $preu;
+    }
+
+    public function descripcio(): string {
+        return $this->nom . " - " . number_format($this->preu, 2) . "€";
+    }
+}
+
+$productes = [
+    new Producte("Pa", 1.50),
+    new Producte("Llet", 0.99),
+    new Producte("Formatge", 2.99),
+    new Producte("Cafè", 3.49)
+];
+
+
+
 ?>
 
 
@@ -87,9 +134,27 @@ echo "El resultat de la suma és: " . $calculadora->sumar();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
-<body><h1>10 ejercicios practicos</h1>
-<h4><?echo $persona1->benvinguda(); ?></h4>
+<body>
+    <h1>10 ejercicios practicos</h1>
+    <h4><?echo $persona1->benvinguda(); ?></h4>
     <p><?echo $cotxe1->descripcio();?></p>
     <?echo $cotxe2->descripcio();?>
     <h1>Introduïu el vostre nom i edat</h1>
@@ -103,5 +168,24 @@ echo "El resultat de la suma és: " . $calculadora->sumar();
         <input type="submit" value="Enviar">
     </form>
     <p><?echo $persona4->benvinguda(); ?></p>
+    <p><?echo $animal1->saludar(); ?></p>
+    <p><?echo $animal2->saludar(); ?></p>
+    <h1>Llista de productes</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Preu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($productes as $producte): ?>
+                <tr>
+                    <td><?php echo $producte->nom; ?></td>
+                    <td><?php echo number_format($producte->preu, 2); ?>€</td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </body>
 </html>
