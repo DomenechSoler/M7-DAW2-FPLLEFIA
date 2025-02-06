@@ -1,28 +1,64 @@
 <?php
+// Incloem la configuració i la classe Duttons
+include './practicas/duttons-game/src/config/config.php';
+include './practicas/duttons-game/src/classes/Dutton.php';
 
-/*----------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See LICENSE in the project root for license information.
- *---------------------------------------------------------------------------------------*/
+// Processar el formulari
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Comprovar que tots els camps estan omplerts
+    if (!empty($_POST['nom']) && !empty($_POST['salut']) && !empty($_POST['dany']) && !empty($_POST['imatge']) && !empty($_POST['habilitats'])) {
+        // Crear el nou objecte Dutton
+        $nouDutton = new Duttons(
+            uniqid(), // Generar un ID únic
+            $_POST['nom'],
+            (int)$_POST['salut'],
+            (int)$_POST['dany'],
+            $_POST['imatge'],
+            explode(',', $_POST['habilitats']) // Dividir les habilitats en un array
+        );
 
-function sayHello($name) {
-	echo "Hello $name!";
+        // Desa el Dutton a la sessió (serialitzat)
+        $_SESSION['duttons'][] = serialize($nouDutton);
+
+        // Redirigeix per evitar duplicats en recarregar
+        header("Location: index.php");
+        exit();
+    } else {
+        echo "<p style='color: red;'>Tots els camps són obligatoris.</p>";
+    }
 }
-
 ?>
 
-<html>
-	<head>
-		<title>Visual Studio Code Remote :: PHP</title>
-	</head>
-	<body>
-		<?php 
-		
-		sayHello('remote hgjuihbui');
-			
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Dutton</title>
+</head>
+<body>
+    <h1>Crea un nou Dutton</h1>
+    <form method="POST">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required><br><br>
 
-			
-		
-		?>
-	</body>
+        <label for="salut">Salut:</label>
+        <input type="number" id="salut" name="salut" required><br><br>
+
+        <label for="dany">Dany:</label>
+        <input type="number" id="dany" name="dany" required><br><br>
+
+        <label for="imatge">URL Imatge:</label>
+        <input type="url" id="imatge" name="imatge" required><br><br>
+
+        <label for="habilitats">Habilitats (separades per comes):</label>
+        <input type="text" id="habilitats" name="habilitats" required><br><br>
+
+        <button type="submit">Crear Dutton</button>
+    </form>
+
+    <!-- Enllaços a altres pàgines -->
+    <p><a href="./practicas/duttons-game/public/characters.php">Veure Duttons</a></p>
+    <p><a href="reset.php">Reiniciar la sessió</a></p>
+</body>
 </html>
