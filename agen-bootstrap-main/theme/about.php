@@ -1,0 +1,192 @@
+<?php
+session_start();
+require_once '../webFiguras/config.php';
+$resultsTestimonials = $mysqli->query("SELECT * FROM TESTIMONIALS");
+
+$testimonials = $resultsTestimonials->fetch_all(MYSQLI_ASSOC);
+?>
+
+
+
+<!DOCTYPE html>
+
+<!--
+ // WEBSITE: https://themefisher.com
+ // TWITTER: https://twitter.com/themefisher
+ // FACEBOOK: https://www.facebook.com/themefisher
+ // GITHUB: https://github.com/themefisher/
+-->
+
+<html lang="zxx">
+
+<head>
+  <meta charset="utf-8">
+  <title>Agen | Bootstrap Agency Template</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <!-- ** Plugins Needed for the Project ** -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <!-- slick slider -->
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  <!-- themefy-icon -->
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  <!-- venobox css -->
+  <link rel="stylesheet" href="plugins/venobox/venobox.css">
+  <!-- card slider -->
+  <link rel="stylesheet" href="plugins/card-slider/css/style.css">
+
+  <!-- Main Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  
+  <!--Favicon-->
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+</head>
+
+<body>
+  
+
+<?php include('header.php'); ?>
+
+<!-- page-title -->
+<section class="page-title bg-cover" data-background="images/backgrounds/page-title.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1 class="display-1 text-white font-weight-bold font-primary">Sobre nosotros</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /page-title -->
+
+
+<!-- team -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto text-center">
+        <h2>Nuestras herramientas</h2>
+        <p>Utilizamos tecnología de vanguardia para dar vida a cada detalle, asegurando precisión, resistencia y un acabado de alta calidad en cada figura.</p>
+        <div class="section-border"></div>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-lg-3 col-sm-6">
+        <div class="card hover-shadow">
+          <img src="images/team/member-1.jpg" alt="team-member" class="card-img-top">
+          <div class="card-body text-center position-relative zindex-1">
+            <h4><a class="text-dark" href="team-single.php">Elegoo</a></h4>
+            <i>Impresora resina</i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card hover-shadow">
+          <img src="images/team/feature.jpg" alt="team-member" class="card-img-top">
+          <div class="card-body text-center position-relative zindex-1">
+            <h4><a class="text-dark" href="team-single.php">Elegoo mercury +</a></h4>
+            <i>Máquina curado</i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card hover-shadow">
+          <img src="images/team/member-3.jpg" alt="team-member" class="card-img-top">
+          <div class="card-body text-center position-relative zindex-1">
+            <h4><a class="text-dark" href="team-single.php">Hephestos 2</a></h4>
+            <i>Impresora filamento</i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card hover-shadow">
+          <img src="images/team/member-4.jpg" alt="team-member" class="card-img-top">
+          <div class="card-body text-center">
+            <h4>Devid Json</h4>
+            <i>Aerografo</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /team -->
+
+<!-- testimonial-slider -->
+<section class="section bg-secondary">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="text-white mb-5">Testimonios de clientes</h2>
+      </div>
+    </div>
+    <div class="row bg-contain" data-background="images/banner/brush.png">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div id="slider" class="ui-card-slider bg-contain">
+          <?php foreach ($testimonials as $testimonial): ?>
+            <div class="slide">
+              <div class="card text-center">
+                <div class="card-body px-5 py-4">
+                  <img src="<?php echo $testimonial['thumbnail']; ?>" alt="user" class="img-fluid rounded-circle mb-4" style="width: 156px; height: 116px;">
+                  <h4 class="text-secondary"><?php echo $testimonial['name'] . ' ' . $testimonial['surname']; ?></h4>
+                  <p><?php echo $testimonial['description']; ?></p>
+                </div>
+              </div>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /testimonial-slider -->
+
+
+<!-- Llamado a la acción -->
+<section class="section">
+  <div class="container section-sm overlay-secondary-half bg-cover" data-background="images/backgrounds/Impresora-Resina.jpg" style="background-position: left;">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-1">
+        <h2 class="text-gradient-primary">¡Empieza con nosotros!</h2>
+        <p class="h4 font-weight-bold text-white mb-4">Dale vida a tus ideas con nuestra tecnología y experiencia.</p>
+        <a href="contact.php" class="btn btn-lg btn-primary">Contáctanos</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Llamado a la acción -->
+
+
+<?php include('footer.php'); ?>
+
+<!-- jQuery -->
+<script src="plugins/jQuery/jquery.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="plugins/bootstrap/bootstrap.min.js"></script>
+<!-- slick slider -->
+<script src="plugins/slick/slick.min.js"></script>
+<!-- venobox -->
+<script src="plugins/venobox/venobox.min.js"></script>
+<!-- shuffle -->
+<script src="plugins/shuffle/shuffle.min.js"></script>
+<!-- apear js -->
+<script src="plugins/counto/apear.js"></script>
+<!-- counter -->
+<script src="plugins/counto/counTo.js"></script>
+<!-- card slider -->
+<script src="plugins/card-slider/js/card-slider-min.js"></script>
+<!-- google map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
+<script src="plugins/google-map/gmap.js"></script>
+
+<!-- Main Script -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
